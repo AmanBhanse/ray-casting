@@ -1,7 +1,7 @@
 class Ray {
-    constructor(x , y){
-        this.unitDirectionVector = createVector(0,1);
-        this.source = createVector(x,y);
+    constructor(pos , angle){
+        this.unitDirectionVector = p5.Vector.fromAngle(angle);
+        this.source = pos;
     }
 
     updateRaySourcePosition(x, y){

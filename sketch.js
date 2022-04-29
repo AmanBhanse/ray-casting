@@ -1,23 +1,26 @@
 let ray;
-let boundary;
+let boundarys= [];
+let sun;
 function setup() {
   createCanvas(400, 400);
-  ray = new Ray(150, 100);
-  boundary = new Boundary(300, 100 , 300, 300);
-  let pt = ray.cast(boundary);
-  console.log(pt);
+
+  for(let i=0 ; i<5 ; i++ ){
+    let x1 = random(width);
+    let x2 = random(width);
+    let y1 = random(height);
+    let y2 = random(height);
+    boundarys[i] = new Boundary(x1, y1 , x2, y2);
+  }
+  sun = new Sun();
 }
 
 function draw() {
   background(0);
-  ray.updateRayDirectionVector(mouseX , mouseY);
-  ray.show();
-  boundary.show();
-
-  let pt = ray.cast(boundary);
-  if(pt){
-    fill(255);
-    ellipse(pt.x ,pt.y , 8 , 8);
+  for(wall of boundarys){
+    wall.show();
   }
+  sun.updatePostion(mouseX, mouseY);
+  sun.show();
+  sun.throwLightOnObject(boundarys);
   
 }
