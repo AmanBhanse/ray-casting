@@ -1,9 +1,14 @@
 class Sun{
+    
     constructor(){
         this.pos = createVector(width/2 , height/2);
         this.rays = [];
+        this.rayDelta = 1; //More the value, less number of rays
+        this.rayStroke = 255;
+        this.rayStrokeAlpha = 100;
 
-        for(let i=0 ; i <=360 ; i+=10){
+
+        for(let i=0 ; i <360 ; i+=this.rayDelta){
             this.rays.push( new Ray(this.pos, radians(i)));
         }
     }
@@ -25,6 +30,7 @@ class Sun{
             }//inner for ends
 
             if(closestPOI){
+                stroke(this.rayStroke,this.rayStrokeAlpha);
                 line(this.pos.x, this.pos.y , closestPOI.x , closestPOI.y);
             }
         }//outter for ends

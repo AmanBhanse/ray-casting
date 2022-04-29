@@ -4,7 +4,7 @@ let sun;
 let xOff = 0;
 let yOff = 1000;
 
-let sun2 ;
+
 function setup() {
   createCanvas(400, 400);
 
@@ -15,8 +15,14 @@ function setup() {
     let y2 = random(height);
     boundarys[i] = new Boundary(x1, y1 , x2, y2);
   }
+
+  //inclosing the canvas with boundaries
+  boundarys.push(new Boundary(0,0,0,width));
+  boundarys.push(new Boundary(0,width,width, height));
+  boundarys.push(new Boundary(width,height,height,0));
+  boundarys.push(new Boundary(height,0,0,0));
+
   sun = new Sun();
-  sun2 = new Sun();
 }
 
 function draw() {
