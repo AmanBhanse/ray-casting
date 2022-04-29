@@ -15,6 +15,9 @@ function draw() {
   boundary.show();
 
   let pt = ray.cast(boundary);
-  console.log(pt);
+  if(pt){
+    fill(255);
+    ellipse(pt.x ,pt.y , 8 , 8);
+  }
   
 }

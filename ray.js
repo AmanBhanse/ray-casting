@@ -17,7 +17,7 @@ class Ray {
 
 
     cast(boundary){
-
+        let pointOfIntersection = null;
         const logs = [];
         //Extracting the boundary coordinates
         const x1 = boundary.startPoint.x;
@@ -47,11 +47,15 @@ class Ray {
         const t = ( (x1 - x3)*(y3 - y4) - (y1 - y3)*(x3 - x4) ) / den;
         const u = - ( (x1 - x2)*(y1 - y3) - (y1-y2)*(x1-x3)  ) / den;
 
-        logs.push(`t : ${t} , u : ${u}` )
+        logs.push(`t : ${t} , u : ${u}` );
 
 
         if(t>0 && t<1 && u>0){
-            return true;
+
+            pointOfIntersection = createVector();
+            pointOfIntersection.x = x1 + t* (x2 - x1);
+            pointOfIntersection.y = y1 + t* (y2- y1);
+            return pointOfIntersection;
         }
         else{
             return;
