@@ -1,6 +1,10 @@
 let ray;
 let boundarys= [];
 let sun;
+let xOff = 0;
+let yOff = 1000;
+
+let sun2 ;
 function setup() {
   createCanvas(400, 400);
 
@@ -12,6 +16,7 @@ function setup() {
     boundarys[i] = new Boundary(x1, y1 , x2, y2);
   }
   sun = new Sun();
+  sun2 = new Sun();
 }
 
 function draw() {
@@ -19,8 +24,11 @@ function draw() {
   for(wall of boundarys){
     wall.show();
   }
-  sun.updatePostion(mouseX, mouseY);
+  sun.updatePostion(noise(xOff) * width , noise(yOff)*height);
   sun.show();
   sun.throwLightOnObject(boundarys);
   
+  
+  xOff += 0.01;
+  yOff += 0.01;
 }
